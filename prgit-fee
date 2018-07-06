@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# System utilities: cd, dirname, pwd
+
+PRGIT_FEE_DIR="$(cd "$(dirname "$0")" && pwd -P)"
+PRGIT_FEE_ENV_FILE='/.env'
+
+
+if [ -f "$PRGIT_FEE_DIR$PRGIT_FEE_ENV_FILE" ]; then
+    . $PRGIT_FEE_DIR$PRGIT_FEE_ENV_FILE
+fi
+if [ -z "$PYTHON_BIN_FILE" ]; then
+    PYTHON_BIN_FILE='python'
+fi
+
+cd "$PRGIT_FEE_DIR" && $PYTHON_BIN_FILE -m fee
